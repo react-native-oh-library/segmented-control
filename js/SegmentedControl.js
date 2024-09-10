@@ -36,12 +36,14 @@ const SegmentedControl = ({
   fontStyle,
   activeFontStyle,
   appearance,
+  momentary = false,
   accessibilityHintSeperator = 'out of',
 }: SegmentedControlProps): React.Node => {
   const colorSchemeHook = useColorScheme();
   const colorScheme = appearance || colorSchemeHook;
   const [segmentWidth, setSegmentWidth] = React.useState(0);
   const animation = React.useRef(new Animated.Value(0)).current;
+  const [showTab, setShowTab] = React.useState(true);
 
   const handleChange = (index: number) => {
     // mocks iOS's nativeEvent
@@ -51,8 +53,22 @@ const SegmentedControl = ({
         selectedSegmentIndex: index,
       },
     };
-    onChange && onChange(event);
-    onValueChange && onValueChange(values[index]);
+    if (onChange) {
+      onChange(event);
+      if (!momentary) return;
+      const timer = setTimeout(() => {
+        setShowTab(false);
+        clearTimeout(timer);
+      }, 300);
+    }
+    if (onValueChange) {
+      onValueChange(values[index]);
+      if (!momentary) return;
+      const timer = setTimeout(() => {
+        setShowTab(false);
+        clearTimeout(timer);
+      }, 300);
+    }
   };
 
   React.useEffect(() => {
@@ -60,12 +76,21 @@ const SegmentedControl = ({
       let isRTL = I18nManager.isRTL ? -segmentWidth : segmentWidth;
       Animated.timing(animation, {
         toValue: isRTL * (selectedIndex || 0),
-        duration: 300,
+        duration: momentary ? 100 : 300,
         easing: Easing.out(Easing.quad),
         useNativeDriver: true,
       }).start();
     }
   }, [animation, segmentWidth, selectedIndex]);
+
+  const onPressStart = (index) => {
+    !showTab && setShowTab(true);
+    if (index !== selectedIndex) return handleChange(index);
+    const timer = setTimeout(() => {
+      setShowTab(false);
+      clearTimeout(timer);
+    }, 300);
+  };
 
   return (
     <View
@@ -93,7 +118,7 @@ const SegmentedControl = ({
           selectedIndex={selectedIndex}
         />
       )}
-      {selectedIndex != null && segmentWidth ? (
+      {selectedIndex != null && segmentWidth && showTab ? (
         <Animated.View
           style={[
             styles.slider,
@@ -124,7 +149,13 @@ const SegmentedControl = ({
                 fontStyle={fontStyle}
                 activeFontStyle={activeFontStyle}
                 appearance={colorScheme}
+                momentary={momentary}
+                onPressStart={() => { 
+                  if(!momentary) return;
+                  onPressStart(index);
+                }}
                 onSelect={() => {
+                  if(momentary) return;
                   handleChange(index);
                 }}
               />
