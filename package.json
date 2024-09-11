@@ -1,12 +1,12 @@
 {
-  "name": "@react-native-segmented-control/segmented-control",
+  "name": "@react-native-oh-tpl/segmented-control",
   "version": "2.5.2-0.1.0",
   "description": "React Native SegmentedControlIOS library",
   "main": "js/index.js",
   "types": "index.d.ts",
   "files": [
     "index.d.ts",
-    "ios",
+    "harmony",
     "js",
     "react-native-segmented-control.podspec"
   ],
@@ -69,7 +69,8 @@
   },
   "keywords": [
     "SegmentedControlIOS",
-    "react-native"
+    "react-native",
+    "harmony"
   ],
   "author": "M.Haris Baig",
   "license": "MIT",
@@ -79,5 +80,8 @@
   "homepage": "https://github.com/react-native-segmented-control/segmented-control#readme",
   "publishConfig": {
     "access": "public"
+  },
+  "harmony": {
+    "alias": "@react-native-segmented-control/segmented-control"
   }
 }
