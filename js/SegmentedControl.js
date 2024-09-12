@@ -59,7 +59,7 @@ const SegmentedControl = ({
       const timer = setTimeout(() => {
         setShowTab(false);
         clearTimeout(timer);
-      }, 300);
+      }, 500);
     }
     if (onValueChange) {
       onValueChange(values[index]);
@@ -67,7 +67,7 @@ const SegmentedControl = ({
       const timer = setTimeout(() => {
         setShowTab(false);
         clearTimeout(timer);
-      }, 300);
+      }, 500);
     }
   };
 
@@ -89,7 +89,7 @@ const SegmentedControl = ({
     const timer = setTimeout(() => {
       setShowTab(false);
       clearTimeout(timer);
-    }, 300);
+    }, 500);
   };
 
   return (
