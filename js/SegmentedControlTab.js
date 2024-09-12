@@ -28,7 +28,8 @@ type Props = $ReadOnly<{|
   tabStyle?: ViewStyle,
   appearance?: 'dark' | 'light' | null,
   accessibilityHint?: string,
-  momentary?: boolean,
+  momentary ?: boolean,
+  onPressStart?: ()=>void,
 |}>;
 
 function isBase64(str) {
@@ -49,6 +50,7 @@ export const SegmentedControlTab = ({
   tabStyle,
   accessibilityHint,
   momentary = false,
+  onPressStart,
 }: Props): React.Node => {
   const colorSchemeHook = useColorScheme();
   const colorScheme = appearance || colorSchemeHook;
