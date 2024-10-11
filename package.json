@@ -13,9 +13,7 @@
   "scripts": {
     "start": "react-native start",
     "test": "pnpm flow && pnpm lint",
-    "ios": "cd example && react-native run-ios",
     "web": "expo web",
-    "android": "react-native run-android",
     "flow": "flow",
     "lint": "eslint . --cache",
     "tsc": "tsc --noEmit",
@@ -68,7 +66,6 @@
     "url": "git+https://github.com/react-native-segmented-control/segmented-control.git"
   },
   "keywords": [
-    "SegmentedControlIOS",
     "react-native",
     "harmony"
   ],
