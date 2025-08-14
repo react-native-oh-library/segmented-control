@@ -1,4 +1,4 @@
-# @react-native-oh-tpl/segmented-control
+# @react-native-ohos/segmented-control
 
 This project is based on [@react-native-segmented-control/segmented-control](https://github.com/react-native-segmented-control/segmented-control)
 

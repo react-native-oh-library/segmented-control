@@ -1,0 +1,11 @@
+[
+    {
+        "Name": "@react-native-segmented-control/segmented-control",
+        "License": "MIT License",
+        "License File": " LICENSE ",
+        "Version Number": "2.5.7",
+        "Owner" : "xiafeng@huawei.com",
+        "Upstream URL": "https://github.com/react-native-segmented-control/segmented-control",
+        "Description": "React Native SegmentedControl library."
+    }
+]
