@@ -38,13 +38,15 @@ const SegmentedControl = ({
   appearance,
   momentary = false,
   accessibilityHintSeperator = 'out of',
+  testIDS = [],
+  sliderStyle,
 }: SegmentedControlProps): React.Node => {
   const colorSchemeHook = useColorScheme();
   const colorScheme = appearance || colorSchemeHook;
   const [segmentWidth, setSegmentWidth] = React.useState(0);
   const animation = React.useRef(new Animated.Value(0)).current;
   const [showTab, setShowTab] = React.useState(true);
-
+  const ref = React.useRef();
   const handleChange = (index: number) => {
     // mocks iOS's nativeEvent
     const event: any = {
@@ -70,6 +72,16 @@ const SegmentedControl = ({
       }, 500);
     }
   };
+  const updateSegmentWidth = React.useCallback(
+    (width: number) => {
+      const newSegmentWidth = values.length ? width / values.length : 0;
+      if (newSegmentWidth !== segmentWidth) {
+        animation.setValue(newSegmentWidth * (selectedIndex || 0));
+        setSegmentWidth(newSegmentWidth);
+      }
+    },
+    [values.length, segmentWidth, animation, selectedIndex],
+  );
 
   React.useEffect(() => {
     if (animation && segmentWidth) {
@@ -91,9 +103,15 @@ const SegmentedControl = ({
       clearTimeout(timer);
     }, 500);
   };
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.measure((_x, _y, width) => updateSegmentWidth(width));
+    }
+  }, [values, updateSegmentWidth]);
 
   return (
     <View
+      ref={ref}
       style={[
         styles.default,
         style,
@@ -105,13 +123,7 @@ const SegmentedControl = ({
         nativeEvent: {
           layout: {width},
         },
-      }) => {
-        const newSegmentWidth = values.length ? width / values.length : 0;
-        if (newSegmentWidth !== segmentWidth) {
-          animation.setValue(newSegmentWidth * (selectedIndex || 0));
-          setSegmentWidth(newSegmentWidth);
-        }
-      }}>
+      }) => updateSegmentWidth(width)}>
       {!backgroundColor && !tintColor && (
         <SegmentsSeparators
           values={values.length}
@@ -129,6 +141,7 @@ const SegmentedControl = ({
               backgroundColor:
                 tintColor || (colorScheme === 'dark' ? '#636366' : 'white'),
             },
+            sliderStyle,
           ]}
         />
       ) : null}
@@ -138,6 +151,9 @@ const SegmentedControl = ({
             return (
               <SegmentedControlTab
                 enabled={enabled}
+                testID={
+                  (testIDS?.length ?? 0) > index ? testIDS[index] : `${index}`
+                }
                 selected={selectedIndex === index}
                 accessibilityHint={`${
                   index + 1
