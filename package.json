@@ -1,6 +1,6 @@
 {
   "name": "@react-native-ohos/segmented-control",
-  "version": "2.5.7",
+  "version": "2.5.8-rc.1",
   "description": "React Native SegmentedControlIOS library",
   "main": "js/index.js",
   "types": "index.d.ts",
@@ -74,7 +74,7 @@
   "bugs": {
     "url": "https://github.com/react-native-segmented-control/segmented-control/issues"
   },
-  "homepage": "https://github.com/react-native-segmented-control/segmented-control#readme",
+  "homepage": "https://github.com/react-native-oh-library/segmented-control/tree/br_rnoh0.77#readme",
   "publishConfig": {
     "access": "public"
   },
