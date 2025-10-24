@@ -1,6 +1,6 @@
 # @react-native-ohos/segmented-control
 
-This project is based on [@react-native-segmented-control/segmented-control](https://github.com/react-native-segmented-control/segmented-control)
+This project is based on [@react-native-segmented-control/segmented-control@v2.5.7](https://github.com/react-native-segmented-control/segmented-control/tree/v2.5.7)
 
 ## Documentation
 
