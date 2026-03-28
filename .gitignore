@@ -49,3 +49,4 @@ buck-out/
 
 # eslintcache
 .eslintcache
+*.tgz
