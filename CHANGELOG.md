@@ -1,5 +1,9 @@
 # Changelog
 ## 鸿蒙化Log
+### v2.6.1-rc.1
+- pre-release version 2.6.1-rc.1
+- fix: fix SegmentedControl error when values is empty
+
 ### v2.5.8-rc.1
 - pre-release version 2.5.8-rc.1
 - feat: add OpneHarmony support for @react-native-segmented-control/segmented-control
