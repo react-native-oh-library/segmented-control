@@ -24,7 +24,7 @@ export const SegmentsSeparators = ({
 
   return (
     <View style={styles.separatorsContainer}>
-      {[...Array(values - 1).keys()].map((val) => {
+      {[...Array(Math.max(values - 1, 0)).keys()].map((val) => {
         return (
           <View
             key={val}
