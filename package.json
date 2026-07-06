@@ -1,6 +1,6 @@
 {
-  "name": "@react-native-oh-tpl/segmented-control",
-  "version": "2.5.2-0.1.2",
+  "name": "@react-native-ohos/segmented-control",
+  "version": "2.5.3",
   "description": "React Native SegmentedControlIOS library",
   "main": "js/index.js",
   "types": "index.d.ts",
